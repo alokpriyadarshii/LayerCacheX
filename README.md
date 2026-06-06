@@ -129,8 +129,9 @@ LayerCacheX/
 | Package Manager | pnpm |
 | Monorepo | pnpm Workspace |
 | Core Library | LayerCacheX |
-| Cache Drivers | Redis, In-Memory, File, DynamoDB, Database |
+| Cache Drivers | Redis, Valkey, In-Memory, File, DynamoDB, SQL Database |
 | Database Adapters | Knex, Kysely, Orchid ORM |
+| SQL Backends | PostgreSQL, MySQL, SQLite |
 | Backend Framework | AdonisJS |
 | Frontend | Vue 3, Inertia.js |
 | UI Library | PrimeVue |
