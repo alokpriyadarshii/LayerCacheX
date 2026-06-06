@@ -1,0 +1,29 @@
+node_modules
+build
+coverage
+.DS_Store
+poc
+doc.md
+.env
+cache.sqlite3
+.todo.md
+
+# Frontend assets compiled code
+docs/public/hot
+docs/public/build
+docs/public/assets
+
+# Build tools specific
+npm-debug.log
+yarn-error.log
+
+# Editors specific
+.fleet
+.idea
+.vscode
+
+# Static export
+dist
+.todo.md
+tmp
+simulator/public/assets

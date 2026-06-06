@@ -1,0 +1,78 @@
+{
+  "name": "@layercachex/plugin-prometheus",
+  "type": "module",
+  "version": "0.2.0",
+  "description": "Prometheus plugin for LayerCacheX",
+  "author": "Alok Priyadarshi <alokpriyadarshi618@gmail.com>",
+  "license": "MIT",
+  "keywords": [
+    "layercachex",
+    "prometheus",
+    "metrics"
+  ],
+  "exports": {
+    ".": "./build/index.js",
+    "./types": "./build/src/types/main.js"
+  },
+  "main": "build/index.js",
+  "files": [
+    "build"
+  ],
+  "scripts": {
+    "test": "c8 pnpm quick:test",
+    "quick:test": "cross-env NODE_NO_WARNINGS=1 node --enable-source-maps --loader=ts-node/esm bin/test.ts",
+    "build": "tsup-node",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "release": "pnpm build && pnpm release-it",
+    "prepublishOnly": "pnpm build",
+    "checks": "pnpm lint && pnpm typecheck"
+  },
+  "peerDependencies": {
+    "layercachex": "^1.0.0",
+    "prom-client": "^15.0.0"
+  },
+  "devDependencies": {
+    "layercachex": "workspace:*",
+    "prom-client": "^15.1.3"
+  },
+  "tsup": {
+    "entry": [
+      "./index.ts",
+      "./src/types.ts"
+    ],
+    "outDir": "./build",
+    "clean": true,
+    "format": "esm",
+    "dts": true,
+    "target": "esnext"
+  },
+  "c8": {
+    "reporter": [
+      "text",
+      "html"
+    ],
+    "exclude": [
+      "bin",
+      "tests/**",
+      "test_helpers/**",
+      "factories/**"
+    ]
+  },
+  "publishConfig": {
+    "access": "public",
+    "tag": "latest"
+  },
+  "release-it": {
+    "git": {
+      "commitMessage": "chore(release): @layercachex/plugin-prometheus@${version}",
+      "tagAnnotation": "release ${version}",
+      "tagName": "@layercachex/plugin-prometheus@${version}"
+    },
+    "github": {
+      "release": true,
+      "releaseName": "@layercachex/plugin-prometheus@${version}",
+      "web": true
+    }
+  }
+}

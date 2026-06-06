@@ -1,0 +1,84 @@
+{
+  "name": "@layercachex/otel",
+  "type": "module",
+  "version": "0.1.2",
+  "description": "OpenTelemetry instrumentation for LayerCacheX",
+  "author": "Alok Priyadarshi <alokpriyadarshi618@gmail.com>",
+  "license": "MIT",
+  "keywords": [
+    "layercachex",
+    "opentelemetry",
+    "otel",
+    "instrumentation",
+    "tracing"
+  ],
+  "exports": {
+    ".": "./build/index.js",
+    "./types": "./build/src/types.js"
+  },
+  "main": "build/index.js",
+  "files": [
+    "build"
+  ],
+  "scripts": {
+    "test": "c8 pnpm quick:test",
+    "quick:test": "cross-env NODE_NO_WARNINGS=1 node --enable-source-maps --loader=ts-node/esm bin/test.ts",
+    "build": "tsup-node",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "release": "pnpm build && pnpm release-it",
+    "prepublishOnly": "pnpm build",
+    "checks": "pnpm lint && pnpm typecheck"
+  },
+  "peerDependencies": {
+    "layercachex": "^1.6.0"
+  },
+  "dependencies": {
+    "@opentelemetry/api": "^1.9.1",
+    "@opentelemetry/core": "^2.6.1",
+    "@opentelemetry/instrumentation": "^0.214.0"
+  },
+  "devDependencies": {
+    "@opentelemetry/sdk-trace-base": "^2.6.1",
+    "layercachex": "workspace:*"
+  },
+  "tsup": {
+    "entry": [
+      "./index.ts",
+      "./src/types.ts"
+    ],
+    "outDir": "./build",
+    "clean": true,
+    "format": "esm",
+    "dts": true,
+    "target": "esnext"
+  },
+  "c8": {
+    "reporter": [
+      "text",
+      "html"
+    ],
+    "exclude": [
+      "bin",
+      "tests/**",
+      "test_helpers/**",
+      "factories/**"
+    ]
+  },
+  "publishConfig": {
+    "access": "public",
+    "tag": "latest"
+  },
+  "release-it": {
+    "git": {
+      "commitMessage": "chore(release): @layercachex/otel@${version}",
+      "tagAnnotation": "release ${version}",
+      "tagName": "@layercachex/otel@${version}"
+    },
+    "github": {
+      "release": true,
+      "releaseName": "@layercachex/otel@${version}",
+      "web": true
+    }
+  }
+}

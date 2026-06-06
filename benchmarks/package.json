@@ -1,0 +1,22 @@
+{
+  "name": "@layercachex/benchmarks",
+  "type": "module",
+  "private": true,
+  "description": "",
+  "author": "Alok Priyadarshi <alokpriyadarshi618@gmail.com>",
+  "license": "ISC",
+  "keywords": [],
+  "main": "index.js",
+  "scripts": {
+    "bench:all": "pnpm tsx all.ts"
+  },
+  "devDependencies": {
+    "@keyv/redis": "^4.6.0",
+    "layercachex": "workspace:*",
+    "cache-manager": "^6.4.3",
+    "cacheable": "^1.10.4",
+    "ioredis": "^5.8.2",
+    "keyv": "^5.5.5",
+    "tinybench": "^4.1.0"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "name": "@layercachex/playground",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "tsx watch src/index.tsx"
+  },
+  "dependencies": {
+    "@layercachex/otel": "workspace:*",
+    "@layercachex/plugin-prometheus": "workspace:*",
+    "@hono/node-server": "^1.19.11",
+    "@opentelemetry/api": "^1.9.1",
+    "@opentelemetry/exporter-trace-otlp-http": "^0.214.0",
+    "@opentelemetry/instrumentation": "^0.214.0",
+    "@opentelemetry/resources": "^2.6.1",
+    "@opentelemetry/sdk-node": "^0.214.0",
+    "@opentelemetry/sdk-trace-node": "^2.6.1",
+    "@opentelemetry/semantic-conventions": "^1.40.0",
+    "layercachex": "workspace:*",
+    "hono": "^4.12.9",
+    "pino": "^10.3.1",
+    "prom-client": "^15.1.3"
+  }
+}
