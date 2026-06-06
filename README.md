@@ -4,12 +4,6 @@
 
 It is designed for high throughput cache reads, graceful stale value fallback, tag based invalidation, cache-stampede protection, and observability through Prometheus and OpenTelemetry.
 
-## Architecture
-
-<p align="center">
-  <img src="./images/layercachex_architecture.png" alt="LayerCacheX architecture" width="900" />
-</p>
-
 ## Highlights
 
 - **Multi-tier caching:** combine in-memory L1 with Redis/Valkey, DynamoDB, file, or SQL-backed L2 storage.
@@ -21,6 +15,12 @@ It is designed for high throughput cache reads, graceful stale value fallback, t
 - **Fault tolerance:** optional L2 circuit breaker and L2 error suppression when an L1 backup is available.
 - **Observability:** emits cache events, Prometheus metrics, and OpenTelemetry spans.
 - **Monorepo packages:** core cache library, Prometheus plugin, OpenTelemetry instrumentation, playground, simulator, and benchmarks.
+
+## Preview
+
+<img src="./images/layercachex_architecture.png" alt="LayerCacheX layercachex architecture" width="100%" />
+<img src="./images/layercachex-cache-proof.png" alt="LayerCacheX layercachex cache proof" width="100%" />
+<img src="./images/layercachex-benchmark.png" alt="LayerCacheX layercachex benchmark" width="100%" />
 
 ## Project Structure
 
