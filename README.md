@@ -545,19 +545,11 @@ Open:
 - `http://localhost:3042/metrics` — Prometheus metrics
 - `http://localhost:3042/benchmark-output` — benchmark table
 
-<p align="center">
-  <img src="./images/layercachex-cache-proof.png" alt="LayerCacheX cache proof screenshot" width="900" />
-</p>
-
 ### Run benchmarks
 
 ```bash
 pnpm -C benchmarks bench:all
 ```
-
-<p align="center">
-  <img src="./images/layercachex-benchmark.png" alt="LayerCacheX benchmark screenshot" width="900" />
-</p>
 
 ### Run the simulator
 
