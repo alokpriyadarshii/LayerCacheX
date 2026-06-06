@@ -35,7 +35,7 @@ export function createCacheEntryOptions(
   const graceBackoff = resolveTtl(options.graceBackoff, null) ?? 0
 
   let logicalTtl = resolveTtl(options.ttl)
-  let physicalTtl = grace > 0 ? grace : logicalTtl
+  let physicalTtl = logicalTtl && grace > 0 ? logicalTtl + grace : logicalTtl
 
   const timeout = resolveTtl(options.timeout, null)
   const hardTimeout = resolveTtl(options.hardTimeout, null)
@@ -127,7 +127,7 @@ export function createCacheEntryOptions(
       options.ttl = newTtl
 
       logicalTtl = resolveTtl(options.ttl)
-      physicalTtl = self.isGraceEnabled() ? grace : logicalTtl
+      physicalTtl = logicalTtl && self.isGraceEnabled() ? logicalTtl + grace : logicalTtl
 
       return self
     },

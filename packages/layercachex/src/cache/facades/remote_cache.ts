@@ -138,9 +138,10 @@ export class RemoteCache {
 
       const value = await this.#driver.get(key)
       if (value === undefined) return
+      if (!options.isGraceEnabled()) return await this.#driver.delete(key)
 
       const entry = CacheEntry.fromDriver(key, value, this.#options.serializer).expire().serialize()
-      return await this.#driver.set(key, entry as any, options.getPhysicalTtl())
+      return await this.#driver.set(key, entry as any, options.grace)
     })
   }
 

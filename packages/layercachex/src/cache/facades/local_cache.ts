@@ -90,9 +90,14 @@ export class LocalCache {
 
     const value = this.#driver.get(key)
     if (value === undefined) return
+    if (options && !options.isGraceEnabled()) return this.delete(key, options)
 
     const newEntry = CacheEntry.fromDriver(key, value, this.#serializer).expire().serialize()
-    return this.#driver.set(key, newEntry as any, this.#driver.getRemainingTtl(key))
+    return this.#driver.set(
+      key,
+      newEntry as any,
+      options?.isGraceEnabled() ? options.grace : this.#driver.getRemainingTtl(key),
+    )
   }
 
   /**

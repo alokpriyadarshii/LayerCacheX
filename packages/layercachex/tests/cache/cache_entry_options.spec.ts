@@ -11,7 +11,7 @@ test.group('Cache Entry Options', () => {
     const options = createCacheEntryOptions(override, defaults)
 
     assert.equal(options.getLogicalTtl(), ms.parse('10m'))
-    assert.equal(options.getPhysicalTtl(), ms.parse('30m'))
+    assert.equal(options.getPhysicalTtl(), ms.parse('40m'))
   })
 
   test('physical ttl should be logical ttl when grace period is disabled', ({ assert }) => {
@@ -20,14 +20,15 @@ test.group('Cache Entry Options', () => {
     assert.equal(options.getPhysicalTtl(), ms.parse('10m'))
   })
 
-  test('physical ttl should be grace period ttl when enabled', ({ assert }) => {
+  test('physical ttl should include the grace period when enabled', ({ assert }) => {
     const options = createCacheEntryOptions({ ttl: '10m', grace: '30m' })
-    assert.equal(options.getPhysicalTtl(), ms.parse('30m'))
+    assert.equal(options.getPhysicalTtl(), ms.parse('40m'))
   })
 
   test('null ttl should be kept and resolved to undefined', ({ assert }) => {
     const options = createCacheEntryOptions({ ttl: null, grace: '30m' })
     assert.deepEqual(options.getLogicalTtl(), undefined)
+    assert.deepEqual(options.getPhysicalTtl(), undefined)
   })
 
   test('clone with null ttl should be kept and resolved as undefined', ({ assert }) => {
@@ -114,5 +115,14 @@ test.group('Cache Entry Options', () => {
 
     assert.equal(options.getLogicalTtl(), ms.parse('5m'))
     assert.equal(options.getPhysicalTtl(), ms.parse('5m'))
+  })
+
+  test('setTtl should re-compute physical ttl with grace', ({ assert }) => {
+    const options = createCacheEntryOptions({ ttl: '10m', grace: '30m' })
+
+    options.setLogicalTtl(ms.parse('5m'))
+
+    assert.equal(options.getLogicalTtl(), ms.parse('5m'))
+    assert.equal(options.getPhysicalTtl(), ms.parse('35m'))
   })
 })
