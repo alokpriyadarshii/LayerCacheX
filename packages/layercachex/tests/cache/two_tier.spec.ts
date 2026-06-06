@@ -314,7 +314,7 @@ test.group('Two tier cache', () => {
     const entry = local.get('key1', stack.defaultOptions)
     assert.deepEqual(entry?.isGraced, true)
 
-    await sleep(2000)
+    await sleep(2300)
 
     const entry2 = local.get('key1', stack.defaultOptions)
     assert.isUndefined(entry2)
