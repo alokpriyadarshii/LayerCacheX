@@ -6,12 +6,12 @@ It is designed for high throughput cache reads, graceful stale value fallback, t
 
 ## Highlights
 
-- **Multi-tier caching:** combine in-memory L1 with Redis/Valkey, DynamoDB, file, or SQL-backed L2 storage.
-- **Fast memory-first reads:** serve hot values from local memory before falling back to distributed cache or factory/database work.
-- **Grace periods / stale fallback:** return an expired-but-safe value while refreshing in the background or when a factory fails.
-- **Cache-stampede protection:** per-key locks prevent many concurrent factory executions for the same missing key.
-- **Cross-instance invalidation:** Redis bus support keeps local L1 caches synchronized across multiple app instances.
-- **Tag-based invalidation:** attach tags to cache entries and invalidate groups with `deleteByTag`.
+- **Multi-tier caching:** combine in memory L1 with Redis/Valkey, DynamoDB, file, or SQL backed L2 storage.
+- **Fast memory first reads:** serve hot values from local memory before falling back to distributed cache or factory/database work.
+- **Grace periods / stale fallback:** return an expired but safe value while refreshing in the background or when a factory fails.
+- **Cache stampede protection:** per key locks prevent many concurrent factory executions for the same missing key.
+- **Cross instance invalidation:** Redis bus support keeps local L1 caches synchronized across multiple app instances.
+- **Tag based invalidation:** attach tags to cache entries and invalidate groups with `deleteByTag`.
 - **Fault tolerance:** optional L2 circuit breaker and L2 error suppression when an L1 backup is available.
 - **Observability:** emits cache events, Prometheus metrics, and OpenTelemetry spans.
 - **Monorepo packages:** core cache library, Prometheus plugin, OpenTelemetry instrumentation, playground, simulator, and benchmarks.
@@ -129,7 +129,7 @@ LayerCacheX/
 | Package Manager | pnpm |
 | Monorepo | pnpm Workspace |
 | Core Library | LayerCacheX |
-| Cache Drivers | Redis, Valkey, In-Memory, File, DynamoDB, SQL Database |
+| Cache Drivers | Redis, Valkey, In Memory, File, DynamoDB, SQL Database |
 | Database Adapters | Knex, Kysely, Orchid ORM |
 | SQL Backends | PostgreSQL, MySQL, SQLite |
 | Backend Framework | AdonisJS |
@@ -141,7 +141,7 @@ LayerCacheX/
 | Logging | Pino |
 | Containerization | Docker Compose |
 | Code Quality | ESLint, Prettier |
-| Release Management | Changesets, release-it |
+| Release Management | Changesets, release it |
 
 ## Packages
 
