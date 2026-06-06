@@ -139,11 +139,11 @@ test.group('LayerCacheX', () => {
     const a1Ttl = await redis.ttl('one:foo')
     const a2Ttl = await redis.ttl('two:foo')
 
-    // a1 TTL should be 12h
-    assert.closeTo(a1Ttl, 12 * 60 * 60, 1)
+    // a1 physical TTL should include its 12h grace period
+    assert.closeTo(a1Ttl, 24 * 60 * 60, 1)
 
-    // a2 ttl should be 24h
-    assert.closeTo(a2Ttl, 24 * 60 * 60, 1)
+    // a2 physical TTL should include the default 24h grace period
+    assert.closeTo(a2Ttl, 36 * 60 * 60, 1)
   })
 
   test('use custom grace period per store', async ({ assert, cleanup }) => {

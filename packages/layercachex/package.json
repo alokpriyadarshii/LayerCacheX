@@ -73,7 +73,7 @@
     "lint": "eslint .",
     "quick:test": "cross-env NODE_NO_WARNINGS=1 node --enable-source-maps --loader=ts-node/esm bin/test.ts",
     "pretest": "pnpm lint",
-    "test": "c8 pnpm quick:test --bail",
+    "test": "c8 pnpm quick:test",
     "build": "pnpm clean && tsup-node",
     "postbuild": "pnpm copy:templates",
     "release": "pnpm build && pnpm release-it",
@@ -137,7 +137,7 @@
   },
   "c8": {
     "reporter": [
-      "text-summary",
+      "text",
       "html"
     ],
     "exclude": [
