@@ -10,7 +10,7 @@
     "node": ">=18.16.0"
   },
   "scripts": {
-    "typecheck": "pnpm run -r --parallel typecheck",
+    "typecheck": "pnpm --filter layercachex build && pnpm run -r --parallel typecheck",
     "build": "pnpm run -r build",
     "lint": "eslint .",
     "checks": "pnpm lint && pnpm typecheck",
