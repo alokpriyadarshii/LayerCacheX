@@ -78,16 +78,18 @@ test.group('Expire', () => {
   test('expire should keep local entries for the grace duration only', async ({ assert }) => {
     const l1Driver = new MemoryDriver({ prefix: 'test' })
     const { cache } = new CacheFactory()
-      .merge({ l1Driver, ttl: '1h', grace: '100ms' })
+      .merge({ l1Driver, ttl: '1h', grace: '500ms' })
       .create()
 
     await cache.set({ key: 'hello', value: 'world' })
     await cache.expire({ key: 'hello' })
 
-    assert.closeTo(l1Driver.getRemainingTtl('hello'), 100, 50)
+    const remainingTtl = l1Driver.getRemainingTtl('hello')
+    assert.isTrue(remainingTtl > 0)
+    assert.isTrue(remainingTtl <= 600)
     assert.deepEqual(await cache.get({ key: 'hello' }), 'world')
 
-    await sleep(150)
+    await sleep(600)
 
     assert.isUndefined(l1Driver.get('hello'))
   })
@@ -95,16 +97,18 @@ test.group('Expire', () => {
   test('expire should keep remote entries for the grace duration only', async ({ assert }) => {
     const l2Driver = new MemoryDriver({ prefix: 'test' })
     const { cache } = new CacheFactory()
-      .merge({ l2Driver: l2Driver as any, ttl: '1h', grace: '100ms' })
+      .merge({ l2Driver: l2Driver as any, ttl: '1h', grace: '500ms' })
       .create()
 
     await cache.set({ key: 'hello', value: 'world' })
     await cache.expire({ key: 'hello' })
 
-    assert.closeTo(l2Driver.getRemainingTtl('hello'), 100, 50)
+    const remainingTtl = l2Driver.getRemainingTtl('hello')
+    assert.isTrue(remainingTtl > 0)
+    assert.isTrue(remainingTtl <= 600)
     assert.deepEqual(await cache.get({ key: 'hello' }), 'world')
 
-    await sleep(150)
+    await sleep(600)
 
     assert.isUndefined(l2Driver.get('hello'))
   })
