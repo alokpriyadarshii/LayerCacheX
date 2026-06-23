@@ -129,4 +129,4 @@ jobs:
           VALKEY_HOST: localhost
           VALKEY_PORT: 6380
           FORCE_COLOR: 1
-        run: pnpm test
+        run: pnpm run -r --parallel quick:test
